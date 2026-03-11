@@ -50,13 +50,6 @@ export async function handler(event) {
     const id = event.queryStringParameters.id;
     const token = event.headers.authorization;
 
-    if (!id) {
-      return {
-        statusCode: 400,
-        body: JSON.stringify({ message: "Agreement ID is required" })
-      };
-    }
-
     const API_URL =
       "https://preview-rls09.congacloud.com/api/data/v1/objects/Agreement";
 
@@ -70,7 +63,7 @@ export async function handler(event) {
     const data = await response.json();
 
     return {
-      statusCode: response.status,
+      statusCode: 200,
       headers: {
         "Content-Type": "application/json"
       },
@@ -81,7 +74,6 @@ export async function handler(event) {
     return {
       statusCode: 500,
       body: JSON.stringify({
-        message: "Server error",
         error: error.message
       })
     };
