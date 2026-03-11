@@ -104,10 +104,38 @@ export async function updateAgreement(id, payload) {
 //   }
 // }
 
+// export async function getAgreementById(id) {
+//   try {
+//     const accessToken = getAccessToken();
+ 
+//     const response = await fetch(
+//       `/.netlify/functions/getAgreement?id=${id}`,
+//       {
+//         method: "GET",
+//         headers: {
+//           Authorization: `Bearer ${accessToken}`
+//         }
+//       }
+//     );
+ 
+//     if (!response.ok) {
+//       const errorData = await response.text();
+//       throw errorData;
+//     }
+ 
+//     const result = await response.text();
+//     console.log("Response",result);
+//     // return result?.Data;
+ 
+//   } catch (error) {
+//     console.error("API Error:", error);
+//     throw error;
+//   }
+// }
 export async function getAgreementById(id) {
   try {
     const accessToken = getAccessToken();
- 
+
     const response = await fetch(
       `/.netlify/functions/getAgreement?id=${id}`,
       {
@@ -117,16 +145,17 @@ export async function getAgreementById(id) {
         }
       }
     );
- 
+
     if (!response.ok) {
-      const errorData = await response.text();
-      throw errorData;
+      const error = await response.text();
+      throw new Error(error);
     }
- 
-    const result = await response.text();
-    console.log("Response",result);
-    // return result?.Data;
- 
+
+    const result = await response.json();
+    console.log("Agreement API result:", result);
+
+    return result;
+
   } catch (error) {
     console.error("API Error:", error);
     throw error;
