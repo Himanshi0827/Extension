@@ -80,7 +80,7 @@ export async function updateAgreement(id, payload) {
 export async function getAgreementById(id) {
   try {
     const CONTRACT_URL =
-      "/api/data/v1/objects/Agreement";
+      "/.netlify/functions/agreement";
 
     const accessToken = getAccessToken();
     const response = await fetch(`${CONTRACT_URL}/${id}`, {
