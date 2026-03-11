@@ -1,5 +1,0 @@
-[[redirects]]
-  from = "/api/*"
-  to = "https://preview-rls09.congacloud.com/api/:splat"
-  status = 200
-  force = true
