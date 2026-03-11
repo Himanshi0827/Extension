@@ -139,25 +139,18 @@ export async function getAgreementById(id) {
     const response = await fetch(
       `/.netlify/functions/getAgreement?id=${id}`,
       {
-        method: "GET",
         headers: {
           Authorization: `Bearer ${accessToken}`
         }
       }
     );
 
-    if (!response.ok) {
-      const error = await response.text();
-      throw new Error(error);
-    }
-
     const result = await response.json();
-    console.log("Agreement API result:", result);
+    console.log("Agreement:", result);
 
     return result;
 
   } catch (error) {
     console.error("API Error:", error);
-    throw error;
   }
 }
