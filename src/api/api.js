@@ -12,6 +12,7 @@ const userManager = new UserManager({
   redirect_uri: "https://philipextension.netlify.app/callback",
   response_type: "code",
   scope: "openid",
+  userStore: new WebStorageStateStore({ store: window.localStorage }),
   
 });
 
