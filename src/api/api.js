@@ -79,18 +79,27 @@ export async function updateAgreement(id, payload) {
 
 export async function getAgreementById(id) {
   try {
-    const CONTRACT_URL =
-      "/.netlify/functions/agreement";
+    const CONTRACT_URL = "/.netlify/functions/agreement";
 
-    const accessToken = getAccessToken();
-    const response = await fetch(`${CONTRACT_URL}/${id}`, {
-      method: "Get",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${accessToken}`,
-        // "user-id": "6cfff136-e62b-d435-133d-455fb809c836",
-      },
-    });
+const response = await fetch(`${CONTRACT_URL}?id=${id}`, {
+  method: "GET",
+  headers: {
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${accessToken}`
+  }
+});
+    // const CONTRACT_URL =
+    //   "/.netlify/functions/agreement";
+
+    // const accessToken = getAccessToken();
+    // const response = await fetch(`${CONTRACT_URL}/${id}`, {
+    //   method: "Get",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //     Authorization: `Bearer ${accessToken}`,
+    //     // "user-id": "6cfff136-e62b-d435-133d-455fb809c836",
+    //   },
+    // });
 
     if (!response.ok) {
       const errorText = await response.text();
